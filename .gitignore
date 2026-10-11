@@ -23,3 +23,6 @@ npm-debug.log*
 *.log
 *.tmp
 *.bak
+
+# === Automação local (ferramenta de deploy, não vai para o repositório) ===
+atualizar-github.bat

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Tigela de petiscos e acompanhamentos">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f5ef"/><stop offset="1" stop-color="#eef3ef"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="470" rx="280" ry="48" fill="#d9d0c4" opacity=".5"/>
+  <path d="M170 340 h460 a40 40 0 0 1 -40 130 h-380 a40 40 0 0 1 -40 -130 z" fill="#fff" stroke="#d9d0c4" stroke-width="4"/>
+  <ellipse cx="400" cy="340" rx="230" ry="42" fill="#eef3ef" stroke="#d9d0c4" stroke-width="3"/>
+  <g fill="#c49a6c" stroke="#7a5c38" stroke-width="2">
+    <circle cx="320" cy="322" r="22"/><circle cx="392" cy="314" r="26"/><circle cx="468" cy="324" r="20"/>
+  </g>
+  <g fill="#4aab72"><circle cx="352" cy="306" r="7"/><circle cx="440" cy="308" r="6"/></g>
+  <g fill="#e8a020"><circle cx="500" cy="316" r="8"/></g>
+  <rect x="360" y="470" width="80" height="14" rx="7" fill="#d9d0c4"/>
+</svg>

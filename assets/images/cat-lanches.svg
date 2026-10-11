@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Hambúrguer artesanal em camadas">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f5ef"/><stop offset="1" stop-color="#eef3ef"/>
+    </linearGradient>
+    <radialGradient id="pao" cx=".4" cy=".3">
+      <stop offset="0" stop-color="#f0c184"/><stop offset="1" stop-color="#d99a4e"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="470" rx="270" ry="46" fill="#d9d0c4" opacity=".5"/>
+  <path d="M230 250 q170 -90 340 0 z" fill="url(#pao)" stroke="#b9783a" stroke-width="3"/>
+  <g fill="#f5e6c8"><circle cx="300" cy="228" r="5"/><circle cx="360" cy="212" r="5"/><circle cx="430" cy="216" r="5"/><circle cx="490" cy="234" r="5"/></g>
+  <rect x="240" y="252" width="320" height="26" rx="10" fill="#4aab72"/>
+  <rect x="248" y="284" width="304" height="34" rx="12" fill="#8a5a34"/>
+  <rect x="252" y="322" width="296" height="18" rx="8" fill="#f2c94c"/>
+  <rect x="240" y="344" width="320" height="30" rx="12" fill="#8a5a34"/>
+  <path d="M240 380 q160 34 320 0 l0 14 q-160 34 -320 0 z" fill="url(#pao)" stroke="#b9783a" stroke-width="3"/>
+</svg>

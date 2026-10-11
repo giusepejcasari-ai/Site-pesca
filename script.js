@@ -303,6 +303,38 @@ const ICONS = {
   mappin:  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7a5c38" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
 };
 
+/* =================================================================
+   IMAGENS POR CATEGORIA (placeholders SVG de alta qualidade)
+   Usadas como fallback quando um item não tem "imagem" própria.
+   Para trocar por fotos de IA, substitua os arquivos em assets/images/
+   ou aponte cada item para um arquivo próprio. Veja IMAGENS-IA.md.
+   ================================================================= */
+const IMAGENS_CATEGORIA = {
+  // Alimentação
+  porcoes:     "assets/images/cat-porcoes.svg",
+  refeicoes:   "assets/images/cat-refeicoes.svg",
+  petiscos:    "assets/images/cat-petiscos.svg",
+  lanches:     "assets/images/cat-lanches.svg",
+  sobremesas:  "assets/images/cat-sobremesas.svg",
+  // Bebidas
+  refrigerantes: "assets/images/cat-bebidas.svg",
+  agua:          "assets/images/cat-agua.svg",
+  sucos:         "assets/images/cat-sucos.svg",
+  energeticos:   "assets/images/cat-energeticos.svg",
+  cervejas:      "assets/images/cat-cervejas.svg",
+  outras:        "assets/images/cat-bebidas.svg",
+  // Pesca / Serviços
+  pesca:         "assets/images/cat-pesca.svg",
+  equipamentos:  "assets/images/cat-equipamentos.svg",
+  servicos:      "assets/images/cat-servicos.svg",
+};
+
+/* Retorna a imagem de um item: usa a própria ou o fallback da categoria */
+function imagemItem(item, categoriaKey) {
+  return item.imagem || IMAGENS_CATEGORIA[categoriaKey] || null;
+}
+
+
 /* Gera URL do WhatsApp com mensagem personalizada */
 function buildWhatsAppURL() {
   const num = CONFIG.contato.whatsapp;
@@ -459,15 +491,16 @@ function renderMenuSection(dados, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   let html = "";
-  Object.values(dados).forEach(secao => {
+  Object.entries(dados).forEach(([catKey, secao]) => {
     html += `<div class="menu-group">
       <h3 class="menu-group__title">${secao.label}</h3>
       <div class="menu-grid">`;
     secao.itens.forEach(item => {
       const indisponivel = item.available === false ? "menu-card--unavailable" : "";
-      const imgHTML = item.imagem
-        ? `<div class="menu-card__img"><img src="${item.imagem}" alt="${item.nome}" loading="lazy"/></div>`
-        : `<div class="menu-card__img menu-card__img--placeholder">🍽️</div>`;
+      const imgSrc = imagemItem(item, catKey);
+      const imgHTML = imgSrc
+        ? `<div class="menu-card__img"><img src="${imgSrc}" alt="${item.nome}" width="400" height="300" loading="lazy" decoding="async"/></div>`
+        : `<div class="menu-card__img menu-card__img--placeholder" aria-hidden="true">🍽️</div>`;
 
       // Volumes (bebidas)
       let precoHTML = "";
@@ -635,6 +668,244 @@ function renderNome() {
 }
 
 /* =================================================================
+   SEÇÃO CARDÁPIOS — catálogo unificado (alimentação + bebidas)
+   com busca e filtros por categoria. Tudo a partir do CONFIG.
+   ================================================================= */
+
+/* Rótulos amigáveis dos grupos (usados nos chips de filtro) */
+const CATEGORIAS_CARDAPIO = [
+  { key: "porcoes",       label: "Porções",                     icone: "assets/images/cat-porcoes.svg" },
+  { key: "refeicoes",     label: "Refeições",                   icone: "assets/images/cat-refeicoes.svg" },
+  { key: "petiscos",      label: "Petiscos e Acompanhamentos",  icone: "assets/images/cat-petiscos.svg" },
+  { key: "lanches",       label: "Lanches",                     icone: "assets/images/cat-lanches.svg" },
+  { key: "sobremesas",    label: "Sobremesas",                  icone: "assets/images/cat-sobremesas.svg" },
+  { key: "refrigerantes", label: "Refrigerantes",               icone: "assets/images/cat-bebidas.svg" },
+  { key: "agua",          label: "Água Mineral",                icone: "assets/images/cat-agua.svg" },
+  { key: "sucos",         label: "Sucos",                       icone: "assets/images/cat-sucos.svg" },
+  { key: "energeticos",   label: "Energéticos",                 icone: "assets/images/cat-energeticos.svg" },
+  { key: "cervejas",      label: "Cervejas",                    icone: "assets/images/cat-cervejas.svg" },
+  { key: "outras",        label: "Outras Bebidas",              icone: "assets/images/cat-bebidas.svg" },
+];
+
+/* Estado atual dos filtros do cardápio */
+const MENU_STATE = { categoria: "all", busca: "" };
+
+/* Monta a lista plana de itens disponíveis a partir do CONFIG. */
+function coletarItensCardapio() {
+  const itens = [];
+  const fontes = [
+    { grupo: "alimentacao", dados: CONFIG.alimentacao },
+    { grupo: "bebidas",     dados: CONFIG.bebidas },
+  ];
+  fontes.forEach(fonte => {
+    Object.entries(fonte.dados).forEach(([catKey, secao]) => {
+      (secao.itens || []).forEach(item => {
+        itens.push({ ...item, _grupo: fonte.grupo, _catKey: catKey, _catLabel: secao.label });
+      });
+    });
+  });
+  return itens;
+}
+
+/* Normaliza texto para busca (minúsculas e sem acento) */
+function normalizar(str) {
+  return (str || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+/* Realça o termo buscado dentro de um texto */
+function realcar(texto, termo) {
+  const seguro = (texto || "").toString();
+  if (!termo) return seguro;
+  const t = normalizar(termo);
+  const alvo = normalizar(seguro);
+  let resultado = "";
+  let i = 0;
+  while (i < seguro.length) {
+    const fim = alvo.indexOf(t, i);
+    if (fim === -1) { resultado += seguro.slice(i); break; }
+    resultado += seguro.slice(i, fim);
+    resultado += "<mark>" + seguro.slice(fim, fim + termo.length) + "</mark>";
+    i = fim + termo.length;
+  }
+  return resultado;
+}
+
+/* Conta quantos itens disponíveis existem por categoria */
+function contarPorCategoria(itens) {
+  const contagem = {};
+  itens.forEach(it => {
+    if (it.available === false) return;
+    contagem[it._catKey] = (contagem[it._catKey] || 0) + 1;
+  });
+  return contagem;
+}
+
+/* Gera os chips de filtro de categoria (oculta categorias vazias) */
+function renderChipsCardapio(itens) {
+  const wrapper = document.getElementById("menu-filters-chips");
+  if (!wrapper) return;
+  const contagem = contarPorCategoria(itens);
+  wrapper.innerHTML = CATEGORIAS_CARDAPIO
+    .filter(cat => contagem[cat.key])
+    .map(cat => `
+      <button type="button" class="filter-chip" data-filter="${cat.key}" aria-pressed="false">
+        ${cat.label}
+        <span class="filter-chip__count">${contagem[cat.key]}</span>
+      </button>
+    `).join("");
+}
+
+/* Renderiza o catálogo conforme categoria + busca atuais */
+function renderResultadosCardapio() {
+  const container = document.getElementById("menu-results");
+  const vazio = document.getElementById("menu-empty");
+  if (!container) return;
+
+  const todos = coletarItensCardapio();
+  const termo = normalizar(MENU_STATE.busca.trim());
+
+  // Filtra por categoria e/ou busca; itens desativados ficam ocultos
+  const filtrados = todos.filter(it => {
+    if (it.available === false) return false;
+    if (MENU_STATE.categoria !== "all" && it._catKey !== MENU_STATE.categoria) return false;
+    if (termo) {
+      const alvo = normalizar(it.nome + " " + (it.descricao || ""));
+      if (!alvo.includes(termo)) return false;
+    }
+    return true;
+  });
+
+  if (filtrados.length === 0) {
+    container.innerHTML = "";
+    if (vazio) vazio.hidden = false;
+    return;
+  }
+  if (vazio) vazio.hidden = true;
+
+  // Agrupa os resultados por categoria
+  const porCategoria = {};
+  filtrados.forEach(it => {
+    (porCategoria[it._catKey] = porCategoria[it._catKey] || { label: it._catLabel, itens: [] }).itens.push(it);
+  });
+
+  const ordem = CATEGORIAS_CARDAPIO.map(c => c.key);
+  let html = "";
+  ordem.forEach(catKey => {
+    const grupo = porCategoria[catKey];
+    if (!grupo) return;
+    const cat = CATEGORIAS_CARDAPIO.find(c => c.key === catKey);
+    html += `<div class="menu-group">
+      <h3 class="menu-group__title">
+        <img class="cat-ico" src="${cat ? cat.icone : ""}" alt="" width="34" height="34" loading="lazy" decoding="async"/>
+        ${grupo.label}
+      </h3>
+      <div class="menu-grid">`;
+
+    grupo.itens.forEach(item => {
+      const imgSrc = imagemItem(item, catKey);
+      const imgHTML = imgSrc
+        ? `<div class="menu-card__img"><img src="${imgSrc}" alt="${item.nome}" width="400" height="300" loading="lazy" decoding="async"/></div>`
+        : `<div class="menu-card__img menu-card__img--placeholder" aria-hidden="true">🍽️</div>`;
+
+      let precoHTML = "";
+      if (item.volumes) {
+        precoHTML = item.volumes.map(v =>
+          `<span class="menu-card__vol">${v.v} — <strong>${formatBRL(v.preco)}</strong></span>`
+        ).join("");
+      } else if (item.preco !== undefined) {
+        precoHTML = `<strong class="menu-card__price">${formatBRL(item.preco)}</strong>`;
+      }
+
+      html += `
+        <div class="menu-card">
+          ${imgHTML}
+          <div class="menu-card__body">
+            <div class="menu-card__top">
+              <span class="menu-card__name">${realcar(item.nome, MENU_STATE.busca.trim())}</span>
+            </div>
+            ${item.descricao ? `<p class="menu-card__desc">${realcar(item.descricao, MENU_STATE.busca.trim())}</p>` : ""}
+            <div class="menu-card__prices">${precoHTML}</div>
+          </div>
+        </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+/* Liga os eventos de busca e filtros */
+function initCardapios() {
+  const input = document.getElementById("menu-search-input");
+  const clearBtn = document.getElementById("menu-search-clear");
+  const resetBtn = document.getElementById("menu-empty-reset");
+  const filtersBar = document.querySelector(".menu-filters");
+
+  const todos = coletarItensCardapio();
+  renderChipsCardapio(todos);
+  renderResultadosCardapio();
+
+  // Busca (com pequeno debounce)
+  if (input) {
+    let debounce;
+    input.addEventListener("input", () => {
+      if (clearBtn) clearBtn.hidden = !input.value;
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        MENU_STATE.busca = input.value;
+        renderResultadosCardapio();
+      }, 120);
+    });
+  }
+
+  // Limpar busca
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (input) input.value = "";
+      clearBtn.hidden = true;
+      MENU_STATE.busca = "";
+      renderResultadosCardapio();
+      if (input) input.focus();
+    });
+  }
+
+  // Filtros por categoria (delegação de evento)
+  if (filtersBar) {
+    filtersBar.addEventListener("click", (e) => {
+      const chip = e.target.closest(".filter-chip");
+      if (!chip) return;
+      MENU_STATE.categoria = chip.dataset.filter;
+      filtersBar.querySelectorAll(".filter-chip").forEach(c => {
+        const ativo = c === chip;
+        c.classList.toggle("filter-chip--active", ativo);
+        c.setAttribute("aria-pressed", ativo ? "true" : "false");
+      });
+      renderResultadosCardapio();
+    });
+  }
+
+  // Reset pela mensagem de vazio
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      MENU_STATE.categoria = "all";
+      MENU_STATE.busca = "";
+      if (input) input.value = "";
+      if (clearBtn) clearBtn.hidden = true;
+      if (filtersBar) {
+        filtersBar.querySelectorAll(".filter-chip").forEach(c => {
+          const ativo = c.dataset.filter === "all";
+          c.classList.toggle("filter-chip--active", ativo);
+          c.setAttribute("aria-pressed", ativo ? "true" : "false");
+        });
+      }
+      renderResultadosCardapio();
+    });
+  }
+}
+
+
+/* =================================================================
    NAVEGAÇÃO COM ABAS
    ================================================================= */
 function initTabs() {
@@ -681,9 +952,28 @@ function initMobileMenu() {
    ================================================================= */
 function initScroll() {
   const navbar = document.getElementById("navbar");
+  const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
+
+  // Scroll-spy: destaca o link da seção visível
+  const secoes = ["inicio", "sobre", "precos", "cardapios", "informacoes", "contato"]
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  function marcarAtivo() {
+    const pos = window.scrollY + 120;
+    let atual = secoes[0];
+    secoes.forEach(sec => { if (sec.offsetTop <= pos) atual = sec; });
+    navLinks.forEach(l => {
+      const alvo = l.getAttribute("href").slice(1);
+      l.classList.toggle("nav-link--active", alvo === (atual && atual.id));
+    });
+  }
+
   window.addEventListener("scroll", () => {
     navbar.classList.toggle("navbar--scrolled", window.scrollY > 60);
-  });
+    marcarAtivo();
+  }, { passive: true });
+  marcarAtivo();
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", e => {
@@ -736,6 +1026,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderServicos();
   renderRegras();
   renderContato();
+  initCardapios();
   initTabs();
   initMobileMenu();
   initScroll();

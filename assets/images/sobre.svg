@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Família aproveitando a beira do lago no pesqueiro">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ecae6"/><stop offset="1" stop-color="#e7f3ec"/></linearGradient>
+    <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d8fb5"/><stop offset="1" stop-color="#1d5535"/></linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ceu)"/>
+  <circle cx="120" cy="110" r="56" fill="#f5c56a" opacity=".9"/>
+  <path d="M0 300 Q200 260 400 300 T800 290 V360 H0 Z" fill="#4aab72"/>
+  <g fill="#1d5535"><ellipse cx="90" cy="300" rx="70" ry="50"/><ellipse cx="700" cy="296" rx="80" ry="54"/></g>
+  <rect y="360" width="800" height="240" fill="url(#agua)"/>
+  <g stroke="#8ecae6" fill="none" opacity=".5"><path d="M40 410 H420" stroke-width="3"/><path d="M420 460 H760" stroke-width="3"/><path d="M120 520 H600" stroke-width="3"/></g>
+  <path d="M0 360 Q260 348 520 366 T800 356 V392 Q1200 380 800 396 T0 392 Z" fill="#7a5c38" opacity=".8"/>
+  <g transform="translate(300 360)">
+    <circle cx="0" cy="-70" r="20" fill="#e9b48c"/>
+    <path d="M-18 -50 q18 -12 36 0 l8 60 h-52 z" fill="#2d7a4f"/>
+    <line x1="10" y1="-40" x2="120" y2="10" stroke="#7a5c38" stroke-width="5"/>
+  </g>
+  <g transform="translate(400 360)">
+    <circle cx="0" cy="-52" r="15" fill="#e9b48c"/>
+    <path d="M-13 -38 q13 -10 26 0 l6 48 h-38 z" fill="#e8a020"/>
+  </g>
+</svg>

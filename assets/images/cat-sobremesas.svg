@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Sobremesa doce em taça">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f5ef"/><stop offset="1" stop-color="#fdf1e3"/>
+    </linearGradient>
+    <linearGradient id="doce" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5c56a"/><stop offset="1" stop-color="#c47f10"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="470" rx="250" ry="44" fill="#d9d0c4" opacity=".5"/>
+  <path d="M300 250 h200 l-24 180 q-76 26 -152 0 z" fill="#ffffff" stroke="#d9d0c4" stroke-width="3" opacity=".92"/>
+  <path d="M312 300 h176 l-18 130 q-70 24 -140 0 z" fill="url(#doce)"/>
+  <ellipse cx="400" cy="250" rx="100" ry="26" fill="#f0c184" stroke="#c47f10" stroke-width="3"/>
+  <circle cx="400" cy="222" r="16" fill="#d43f3f"/>
+  <path d="M400 206 q4 -18 20 -20 q-2 16 -20 20 z" fill="#4aab72"/>
+  <rect x="352" y="470" width="96" height="12" rx="6" fill="#d9d0c4"/>
+</svg>

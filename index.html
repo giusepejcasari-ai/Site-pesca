@@ -9,9 +9,12 @@
 
   <!-- Open Graph -->
   <meta property="og:title"       content="Pesqueiro Água Viva" />
-  <meta property="og:description" content="Pesca, alimentação e lazer em família. Consulte preços e horários." />
-  <meta property="og:image"       content="assets/images/hero.jpg" />
+  <meta property="og:description" content="Pesca, alimentação e lazer em família. Consulte preços, cardápio e horários." />
+  <meta property="og:image"       content="assets/images/hero.svg" />
+  <meta property="og:image:alt"   content="Lago do Pesqueiro Água Viva ao amanhecer" />
   <meta property="og:type"        content="website" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta name="twitter:card"       content="summary_large_image" />
 
   <!-- Favicon inline SVG -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐟</text></svg>" />
@@ -36,9 +39,11 @@
     </button>
 
     <div id="nav-links" class="nav-links">
+      <a href="#inicio">Início</a>
       <a href="#sobre">Sobre</a>
-      <a href="#precos">Preços</a>
-      <a href="#regras">Regras</a>
+      <a href="#precos">Pesca e Serviços</a>
+      <a href="#cardapios">Cardápios</a>
+      <a href="#informacoes">Informações</a>
       <a href="#contato">Contato</a>
       <a href="https://wa.me/5511997413788" class="nav-cta" target="_blank" rel="noopener" data-whatsapp id="nav-wa-btn">
         <span id="nav-wa-icon" style="width:18px;height:18px;display:inline-flex;align-items:center"></span> WhatsApp
@@ -103,15 +108,18 @@
         </div>
       </div>
 
-      <div class="horario-card animate-on-scroll">
-        <h3>⏰ Horário de Funcionamento</h3>
-        <div id="horarios-list">
-          <!-- Preenchido pelo JS -->
-        </div>
-        <div class="horario-cta">
-          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" data-whatsapp id="link-reserva-horario">
-            💬 Falar conosco
-          </a>
+      <div class="sobre-media animate-on-scroll">
+        <img src="assets/images/sobre.svg" alt="Família aproveitando a beira do lago no Pesqueiro Água Viva" width="800" height="600" loading="lazy" decoding="async"/>
+        <div class="horario-card">
+          <h3>⏰ Horário de Funcionamento</h3>
+          <div id="horarios-list">
+            <!-- Preenchido pelo JS -->
+          </div>
+          <div class="horario-cta">
+            <a href="https://wa.me/5511997413788" target="_blank" rel="noopener" data-whatsapp id="link-reserva-horario">
+              💬 Falar conosco
+            </a>
+          </div>
         </div>
       </div>
 
@@ -126,8 +134,8 @@
   <div class="container">
 
     <header class="section-header animate-on-scroll">
-      <div class="section-tag">Tabela de Preços</div>
-      <h2 id="precos-titulo" class="section-title">Preços e Cardápio</h2>
+      <div class="section-tag">Pesca & Lazer</div>
+      <h2 id="precos-titulo" class="section-title">Pesca e Serviços</h2>
       <p class="section-sub">Toque nas abas para navegar entre as categorias. Os preços refletem os valores atuais do estabelecimento.</p>
       <div class="section-divider"></div>
     </header>
@@ -182,13 +190,61 @@
 </section>
 
 <!-- ============================================================
-     REGRAS GERAIS
+     CARDÁPIOS (área dedicada com busca e filtros)
      ============================================================ -->
-<section id="regras" aria-labelledby="regras-titulo">
+<section id="cardapios" aria-labelledby="cardapios-titulo">
+  <div class="container">
+
+    <header class="section-header animate-on-scroll">
+      <div class="section-tag">Alimentação & Bebidas</div>
+      <h2 id="cardapios-titulo" class="section-title">Cardápios</h2>
+      <p class="section-sub">Consulte nossas porções, refeições, petiscos, lanches, sobremesas e bebidas. Use a busca ou filtre por categoria.</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <!-- Barra de busca -->
+    <div class="menu-toolbar animate-on-scroll">
+      <div class="menu-search">
+        <label for="menu-search-input" class="sr-only">Pesquisar no cardápio</label>
+        <span class="menu-search__icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="search" id="menu-search-input" placeholder="Buscar produto... (ex: peixe, suco, porção)" autocomplete="off" />
+        <button type="button" id="menu-search-clear" class="menu-search__clear" aria-label="Limpar busca" hidden>&times;</button>
+      </div>
+    </div>
+
+    <!-- Filtros por categoria -->
+    <div class="menu-filters animate-on-scroll" role="group" aria-label="Filtrar cardápio por categoria">
+      <button type="button" class="filter-chip filter-chip--active" data-filter="all" aria-pressed="true">Todas</button>
+      <!-- Chips gerados pelo JS -->
+      <span id="menu-filters-chips"></span>
+    </div>
+
+    <!-- Resultados -->
+    <div id="menu-results" class="menu-catalog" aria-live="polite">
+      <!-- Preenchido pelo JS -->
+    </div>
+
+    <!-- Mensagem de vazio -->
+    <div id="menu-empty" class="menu-empty" hidden>
+      <div class="menu-empty__icon" aria-hidden="true">🔎</div>
+      <p class="menu-empty__title">Nenhum produto encontrado</p>
+      <p class="menu-empty__sub">Tente outro termo de busca ou selecione outra categoria.</p>
+      <button type="button" id="menu-empty-reset" class="btn btn--outline btn--sm">Limpar filtros</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     INFORMAÇÕES (Sobre + Horários + Regras)
+     ============================================================ -->
+<section id="informacoes" aria-labelledby="regras-titulo">
   <div class="container">
     <header class="section-header animate-on-scroll">
       <div class="section-tag">Regulamento</div>
-      <h2 id="regras-titulo" class="section-title">Regras do Pesqueiro</h2>
+      <h2 id="regras-titulo" class="section-title">Informações e Regras</h2>
       <p class="section-sub">Para garantir uma experiência agradável para todos, pedimos que leia e siga as regras abaixo.</p>
       <div class="section-divider"></div>
     </header>
@@ -315,8 +371,9 @@
         <ul>
           <li><a href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre nós</a></li>
-          <li><a href="#precos">Preços e Cardápio</a></li>
-          <li><a href="#regras">Regras</a></li>
+          <li><a href="#precos">Pesca e Serviços</a></li>
+          <li><a href="#cardapios">Cardápios</a></li>
+          <li><a href="#informacoes">Informações e Regras</a></li>
           <li><a href="#contato">Localização</a></li>
         </ul>
       </nav>

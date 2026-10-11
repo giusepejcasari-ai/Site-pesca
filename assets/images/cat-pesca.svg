@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Pesca esportiva à beira do lago">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ecae6"/><stop offset="1" stop-color="#cdeaf3"/>
+    </linearGradient>
+    <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d8fb5"/><stop offset="1" stop-color="#1d5535"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#ceu)"/>
+  <circle cx="650" cy="110" r="58" fill="#f5c56a" opacity=".9"/>
+  <path d="M0 250 Q200 210 400 250 T800 245 V600 H0 Z" fill="#4aab72"/>
+  <path d="M0 300 Q220 280 430 320 T800 310 V600 H0 Z" fill="#2d7a4f"/>
+  <rect y="380" width="800" height="220" fill="url(#agua)"/>
+  <path d="M0 380 Q200 396 400 382 T800 390" stroke="#8ecae6" stroke-width="4" fill="none" opacity=".6"/>
+  <path d="M40 430 Q180 444 320 430 T640 436" stroke="#8ecae6" stroke-width="3" fill="none" opacity=".45"/>
+  <path d="M120 470 Q260 486 420 472 T720 480" stroke="#8ecae6" stroke-width="3" fill="none" opacity=".35"/>
+  <g transform="rotate(-18 300 380)">
+    <rect x="296" y="150" width="9" height="240" rx="4" fill="#7a5c38"/>
+    <circle cx="300" cy="150" r="7" fill="#c49a6c"/>
+  </g>
+  <path d="M300 380 Q360 420 430 470" stroke="#ffffff" stroke-width="2.5" fill="none" opacity=".8"/>
+  <path d="M425 462 q28 -6 40 12 q-16 16 -40 12 q-8 -12 0 -24 z" fill="#e8a020"/>
+  <path d="M465 474 l14 6 l-14 6 z" fill="#e8a020"/>
+  <circle cx="446" cy="472" r="2.4" fill="#1d5535"/>
+</svg>

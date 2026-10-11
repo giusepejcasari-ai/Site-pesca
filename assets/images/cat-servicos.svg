@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Quiosque coberto com churrasqueira no pesqueiro">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8f5ef"/><stop offset="1" stop-color="#eef3ef"/></linearGradient></defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="500" rx="300" ry="44" fill="#c9d6cd" opacity=".5"/>
+  <path d="M0 470 Q200 440 400 470 T800 460 V520 H0 Z" fill="#4aab72"/>
+  <g stroke="#7a5c38" stroke-width="12" stroke-linecap="round">
+    <line x1="220" y1="440" x2="220" y2="210"/><line x1="580" y1="440" x2="580" y2="210"/>
+  </g>
+  <path d="M180 220 L400 120 L620 220 Z" fill="#a8452e"/>
+  <path d="M180 220 L400 120 L620 220 Z" fill="none" stroke="#7a3320" stroke-width="4"/>
+  <rect x="250" y="230" width="300" height="210" fill="#c49a6c" opacity=".9"/>
+  <rect x="300" y="290" width="80" height="150" fill="#7a5c38"/>
+  <g>
+    <rect x="430" y="300" width="120" height="90" rx="8" fill="#5a4023"/>
+    <rect x="430" y="288" width="120" height="16" rx="6" fill="#3a2a18"/>
+    <path d="M470 300 q10 -30 40 -30 q30 0 40 30" stroke="#e8860e" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

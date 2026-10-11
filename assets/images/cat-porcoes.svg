@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Porções e petiscos brasileiros">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f5ef"/><stop offset="1" stop-color="#eef3ef"/>
+    </linearGradient>
+    <linearGradient id="frit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5c56a"/><stop offset="1" stop-color="#e8a020"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="470" rx="300" ry="52" fill="#d9d0c4" opacity=".55"/>
+  <ellipse cx="400" cy="440" rx="240" ry="46" fill="#fff" stroke="#d9d0c4" stroke-width="3"/>
+  <g fill="url(#frit)" stroke="#c47f10" stroke-width="2">
+    <rect x="250" y="360" width="30" height="90" rx="8" transform="rotate(-12 265 405)"/>
+    <rect x="300" y="350" width="30" height="95" rx="8" transform="rotate(-4 315 397)"/>
+    <rect x="352" y="358" width="30" height="92" rx="8" transform="rotate(6 367 404)"/>
+    <rect x="404" y="352" width="30" height="96" rx="8" transform="rotate(-8 419 400)"/>
+    <rect x="456" y="360" width="30" height="90" rx="8" transform="rotate(10 471 405)"/>
+    <rect x="506" y="356" width="30" height="94" rx="8" transform="rotate(-3 521 403)"/>
+  </g>
+  <g fill="#c49a6c" stroke="#7a5c38" stroke-width="2">
+    <circle cx="330" cy="330" r="26"/><circle cx="420" cy="320" r="30"/><circle cx="500" cy="332" r="24"/>
+  </g>
+  <path d="M330 330 q-6 -10 -2 -20" stroke="#4aab72" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M420 320 q8 -8 6 -18" stroke="#4aab72" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

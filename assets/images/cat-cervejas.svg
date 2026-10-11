@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Cerveja gelada servida">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff8e6"/><stop offset="1" stop-color="#ffe9b8"/></linearGradient>
+  <linearGradient id="cer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7c85a"/><stop offset="1" stop-color="#d99a1e"/></linearGradient></defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <ellipse cx="400" cy="500" rx="170" ry="28" fill="#e0c079" opacity=".5"/>
+  <path d="M310 170 h180 l-16 300 q-74 20 -148 0 z" fill="#ffffff" stroke="#e0c079" stroke-width="4" opacity=".92"/>
+  <path d="M324 250 h152 l-12 218 q-64 16 -128 0 z" fill="url(#cer)"/>
+  <ellipse cx="400" cy="172" rx="90" ry="18" fill="#fdf1d6" stroke="#e0c079" stroke-width="3"/>
+  <ellipse cx="400" cy="252" rx="76" ry="16" fill="#fdf6e6" opacity=".9"/>
+  <g fill="#ffffff" opacity=".8"><circle cx="360" cy="300" r="6"/><circle cx="420" cy="330" r="5"/><circle cx="392" cy="372" r="6"/></g>
+</svg>

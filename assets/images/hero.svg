@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Pesqueiro ao amanhecer com lago, vegetação e margens organizadas">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b5f86"/><stop offset=".45" stop-color="#7fb7c9"/><stop offset=".8" stop-color="#f6d69a"/><stop offset="1" stop-color="#f5c56a"/>
+    </linearGradient>
+    <radialGradient id="sol" cx=".72" cy=".66" r=".18">
+      <stop offset="0" stop-color="#fff3d0"/><stop offset="1" stop-color="#f5c56a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="agua" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c79a5a"/><stop offset=".35" stop-color="#3d8fb5"/><stop offset="1" stop-color="#173f2b"/>
+    </linearGradient>
+    <linearGradient id="folha" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f9c63"/><stop offset="1" stop-color="#1d5535"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#ceu)"/>
+  <rect width="1600" height="900" fill="url(#sol)"/>
+  <circle cx="1150" cy="560" r="70" fill="#fff6dd" opacity=".9"/>
+  <!-- morros ao fundo -->
+  <path d="M0 470 Q220 380 430 470 T900 450 T1400 480 T1600 440 V560 H0 Z" fill="#2d7a4f" opacity=".55"/>
+  <path d="M0 520 Q260 450 520 520 T1040 500 T1600 520 V600 H0 Z" fill="url(#folha)" opacity=".8"/>
+  <!-- linha de árvores -->
+  <g fill="#1d5535" opacity=".9">
+    <ellipse cx="120" cy="500" rx="70" ry="58"/><ellipse cx="300" cy="512" rx="90" ry="64"/>
+    <ellipse cx="520" cy="500" rx="74" ry="56"/><ellipse cx="980" cy="506" rx="86" ry="60"/>
+    <ellipse cx="1240" cy="498" rx="72" ry="54"/><ellipse cx="1480" cy="512" rx="96" ry="66"/>
+  </g>
+  <!-- água -->
+  <rect y="560" width="1600" height="340" fill="url(#agua)"/>
+  <!-- reflexo do sol -->
+  <ellipse cx="1150" cy="620" rx="120" ry="20" fill="#fff3d0" opacity=".55"/>
+  <g stroke="#8ecae6" fill="none" opacity=".5">
+    <path d="M60 640 H520" stroke-width="3"/><path d="M120 690 H640" stroke-width="3"/>
+    <path d="M900 660 H1420" stroke-width="3"/><path d="M760 740 H1320" stroke-width="3"/>
+    <path d="M300 790 H1100" stroke-width="3"/><path d="M1000 820 H1500" stroke-width="3"/>
+  </g>
+  <!-- margem / terra -->
+  <path d="M0 560 Q300 540 640 566 T1600 552 V600 Q1200 590 800 606 T0 600 Z" fill="#7a5c38" opacity=".85"/>
+  <!-- quiosque à direita -->
+  <g transform="translate(1290 430)">
+    <path d="M0 60 L70 10 L140 60 Z" fill="#7a5c38"/>
+    <rect x="10" y="60" width="120" height="80" fill="#c49a6c"/>
+    <rect x="30" y="86" width="30" height="54" fill="#5a4023"/>
+    <rect x="86" y="86" width="34" height="34" fill="#8ecae6" opacity=".8"/>
+  </g>
+  <!-- vara de pesca + pescador à esquerda -->
+  <g transform="translate(300 560)">
+    <rect x="0" y="-150" width="7" height="170" rx="3" fill="#5a4023" transform="rotate(14 3 -60)"/>
+    <path d="M40 -20 Q120 40 210 120" stroke="#ffffff" stroke-width="2" fill="none" opacity=".7"/>
+    <circle cx="4" cy="-150" r="6" fill="#3a2a18"/>
+  </g>
+  <!-- vegetação em primeiro -->
+  <g fill="#123626">
+    <path d="M0 900 q40 -120 90 -10 q30 -90 80 10 z" opacity=".9"/>
+    <path d="M1500 900 q50 -130 100 -6 q34 -96 0 6 z" opacity=".9"/>
+  </g>
+</svg>

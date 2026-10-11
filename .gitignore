@@ -1,0 +1,25 @@
+# === macOS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# === Windows ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Editores / IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Node (se usar build futuramente) ===
+node_modules/
+npm-debug.log*
+
+# === Diversos ===
+*.log
+*.tmp
+*.bak

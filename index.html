@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesqueiro Água Viva — Preços e Cardápio</title>
+  <meta name="description" content="Consulte os preços de pesca, cardápio completo, horários de funcionamento e localização do Pesqueiro Água Viva. Venha pescar e relaxar em família!" />
+  <meta name="theme-color" content="#2d7a4f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Pesqueiro Água Viva" />
+  <meta property="og:description" content="Pesca, alimentação e lazer em família. Consulte preços e horários." />
+  <meta property="og:image"       content="assets/images/hero.jpg" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Favicon inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐟</text></svg>" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav id="navbar" role="navigation" aria-label="Menu principal">
+  <div class="container navbar-inner">
+
+    <a href="#inicio" class="nav-logo" aria-label="Ir para o início">
+      <img src="assets/icons/logo.jpg" alt="Logo Pesqueiro Água Viva" class="logo-img" width="40" height="40"/>
+      <span class="logo-name" data-nome>Pesqueiro Água Viva</span>
+    </a>
+
+    <button id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div id="nav-links" class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#precos">Preços</a>
+      <a href="#regras">Regras</a>
+      <a href="#contato">Contato</a>
+      <a href="https://wa.me/5511997413788" class="nav-cta" target="_blank" rel="noopener" data-whatsapp id="nav-wa-btn">
+        <span id="nav-wa-icon" style="width:18px;height:18px;display:inline-flex;align-items:center"></span> WhatsApp
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="inicio" aria-label="Apresentação">
+  <div id="hero">
+    <div class="hero-bg" role="img" aria-label="Lago do pesqueiro ao entardecer"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">🌿 Bem-vindo à natureza</div>
+        <h1 class="hero-title">
+          Pescar, relaxar<br>e <em>saborear</em> a vida.
+        </h1>
+        <p class="hero-subtitle" data-slogan>Um lugar para descansar, pescar e saborear.</p>
+        <div class="hero-actions">
+          <a href="#precos" class="btn btn--primary" id="btn-ver-precos">
+            🪙 Ver Preços e Cardápio
+          </a>
+          <a href="#contato" class="btn btn--ghost" id="btn-como-chegar">
+            📍 Como Chegar
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-mouse"></div>
+      <span>Rolar</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOBRE
+     ============================================================ -->
+<section id="sobre" aria-labelledby="sobre-titulo">
+  <div class="container">
+    <div class="sobre-grid">
+
+      <div class="sobre-texto animate-on-scroll">
+        <h2 id="sobre-titulo">Um recanto de<br>paz à beira do lago</h2>
+        <p data-descricao>Localizado em meio à natureza, o Pesqueiro Água Viva oferece estrutura completa para toda a família.</p>
+        <p>Lagos bem abastecidos com diversas espécies, equipamentos para aluguel, alimentação de qualidade e um ambiente tranquilo — tudo para quem quer fugir da correria da cidade.</p>
+
+        <div class="sobre-features">
+          <div class="feature-pill"><span class="icon">🐟</span> Lagos abastecidos</div>
+          <div class="feature-pill"><span class="icon">🍽️</span> Alimentação no local</div>
+          <div class="feature-pill"><span class="icon">🏡</span> Quiosques disponíveis</div>
+          <div class="feature-pill"><span class="icon">🚗</span> Estacionamento grátis</div>
+          <div class="feature-pill"><span class="icon">👨‍👩‍👧</span> Ideal para famílias</div>
+          <div class="feature-pill"><span class="icon">🐾</span> Pet friendly</div>
+        </div>
+      </div>
+
+      <div class="horario-card animate-on-scroll">
+        <h3>⏰ Horário de Funcionamento</h3>
+        <div id="horarios-list">
+          <!-- Preenchido pelo JS -->
+        </div>
+        <div class="horario-cta">
+          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" data-whatsapp id="link-reserva-horario">
+            💬 Falar conosco
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PREÇOS E CARDÁPIO (Abas)
+     ============================================================ -->
+<section id="precos" aria-labelledby="precos-titulo">
+  <div class="container">
+
+    <header class="section-header animate-on-scroll">
+      <div class="section-tag">Tabela de Preços</div>
+      <h2 id="precos-titulo" class="section-title">Preços e Cardápio</h2>
+      <p class="section-sub">Toque nas abas para navegar entre as categorias. Os preços refletem os valores atuais do estabelecimento.</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <!-- Abas -->
+    <div class="tabs-wrapper" role="tablist" aria-label="Categorias">
+      <div class="tabs-scroll">
+        <button class="tab-btn tab-btn--active" role="tab" aria-selected="true"  aria-controls="tab-pesca"       data-tab="pesca"       id="tabtrigger-pesca">
+          <img src="assets/icons/icon-pesca.jpg" alt="" width="20" height="20" style="border-radius:4px;object-fit:cover"> Pesca
+        </button>
+        <button class="tab-btn"                 role="tab" aria-selected="false" aria-controls="tab-alimentacao" data-tab="alimentacao" id="tabtrigger-alimentacao">
+          <img src="assets/icons/icon-alimentacao.jpg" alt="" width="20" height="20" style="border-radius:4px;object-fit:cover"> Alimentação
+        </button>
+        <button class="tab-btn"                 role="tab" aria-selected="false" aria-controls="tab-bebidas"     data-tab="bebidas"     id="tabtrigger-bebidas">
+          <img src="assets/icons/icon-bebidas.svg" alt="" width="20" height="20" style="border-radius:4px"> Bebidas
+        </button>
+        <button class="tab-btn"                 role="tab" aria-selected="false" aria-controls="tab-servicos"    data-tab="servicos"    id="tabtrigger-servicos">
+          <img src="assets/icons/icon-servicos.svg" alt="" width="20" height="20" style="border-radius:4px"> Serviços
+        </button>
+      </div>
+    </div>
+
+    <!-- Painel: Pesca -->
+    <div class="tab-panel tab-panel--active" id="tab-pesca" role="tabpanel" aria-labelledby="tabtrigger-pesca">
+      <div class="price-cards-grid" id="section-pesca-content">
+        <!-- Preenchido pelo JS -->
+      </div>
+    </div>
+
+    <!-- Painel: Alimentação -->
+    <div class="tab-panel" id="tab-alimentacao" role="tabpanel" aria-labelledby="tabtrigger-alimentacao">
+      <div id="section-alimentacao-content">
+        <!-- Preenchido pelo JS -->
+      </div>
+    </div>
+
+    <!-- Painel: Bebidas -->
+    <div class="tab-panel" id="tab-bebidas" role="tabpanel" aria-labelledby="tabtrigger-bebidas">
+      <div id="section-bebidas-content">
+        <!-- Preenchido pelo JS -->
+      </div>
+    </div>
+
+    <!-- Painel: Serviços Adicionais -->
+    <div class="tab-panel" id="tab-servicos" role="tabpanel" aria-labelledby="tabtrigger-servicos">
+      <div class="price-cards-grid" id="section-servicos-content">
+        <!-- Preenchido pelo JS -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     REGRAS GERAIS
+     ============================================================ -->
+<section id="regras" aria-labelledby="regras-titulo">
+  <div class="container">
+    <header class="section-header animate-on-scroll">
+      <div class="section-tag">Regulamento</div>
+      <h2 id="regras-titulo" class="section-title">Regras do Pesqueiro</h2>
+      <p class="section-sub">Para garantir uma experiência agradável para todos, pedimos que leia e siga as regras abaixo.</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <div class="regras-container animate-on-scroll">
+      <div class="regras-list-box">
+        <ul id="regras-list" aria-label="Lista de regras">
+          <!-- Preenchido pelo JS -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTATO E LOCALIZAÇÃO
+     ============================================================ -->
+<section id="contato" aria-labelledby="contato-titulo">
+  <div class="container">
+
+    <header class="section-header animate-on-scroll">
+      <div class="section-tag">Localização e Contato</div>
+      <h2 id="contato-titulo" class="section-title">Como nos Encontrar</h2>
+      <p class="section-sub">Estamos de portas abertas para recebê-lo. Entre em contato ou venha nos visitar!</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <div class="contato-grid animate-on-scroll">
+
+      <div class="contato-info">
+        <h3>Informações de Contato</h3>
+
+        <div class="contact-item">
+          <div class="ci-icon ci-icon--green" id="ci-phone-icon" style="display:flex;align-items:center;justify-content:center"></div>
+          <div>
+            <span class="ci-label">WhatsApp</span>
+            <span class="ci-value">
+              <a href="#" data-whatsapp data-texto target="_blank" rel="noopener" id="link-whatsapp-contato">(11) 99999-9999</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="ci-icon ci-icon--pink" id="ci-ig-icon" style="display:flex;align-items:center;justify-content:center"></div>
+          <div>
+            <span class="ci-label">Instagram</span>
+            <span class="ci-value">
+              <a href="#" data-instagram target="_blank" rel="noopener" id="link-instagram">@pesqueiro.aguaviva</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="ci-icon ci-icon--blue" id="ci-fb-icon" style="display:flex;align-items:center;justify-content:center"></div>
+          <div>
+            <span class="ci-label">Facebook</span>
+            <span class="ci-value">
+              <a href="#" data-facebook target="_blank" rel="noopener" id="link-facebook">pesqueiroaguaviva</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="ci-icon ci-icon--earth" id="ci-pin-icon" style="display:flex;align-items:center;justify-content:center"></div>
+          <div>
+            <span class="ci-label">Endereço</span>
+            <span class="ci-value" data-endereco>Estr. Rural, km 12 — Bairro Exemplo, Cidade/SP</span>
+          </div>
+        </div>
+
+        <div class="social-links" role="list" aria-label="Redes sociais e contato">
+          <a href="#" data-whatsapp class="social-btn social-btn--wa" target="_blank" rel="noopener" role="listitem" id="btn-social-wa">
+            💬 WhatsApp
+          </a>
+          <a href="#" data-instagram class="social-btn social-btn--ig" target="_blank" rel="noopener" role="listitem" id="btn-social-ig">
+            📸 Instagram
+          </a>
+          <a href="#" data-facebook class="social-btn social-btn--fb" target="_blank" rel="noopener" role="listitem" id="btn-social-fb">
+            👍 Facebook
+          </a>
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <div>
+        <div class="mapa-wrapper">
+          <iframe
+            id="mapa-embed"
+            src=""
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização do Pesqueiro Água Viva no Google Maps"
+          ></iframe>
+        </div>
+        <div style="text-align:center; margin-top: 14px;">
+          <a href="#" data-mapa-link class="btn btn--outline btn--sm" target="_blank" rel="noopener" id="btn-abrir-mapa">
+            🗺️ Abrir no Google Maps
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RODAPÉ
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="logo-row">
+          <img src="assets/icons/logo.jpg" alt="Logo" width="32" height="32" style="border-radius:50%;object-fit:cover">
+          <span data-nome>Pesqueiro Água Viva</span>
+        </div>
+        <p data-descricao>Localizado em meio à natureza, o Pesqueiro Água Viva oferece estrutura completa para toda a família.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Menu do rodapé">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#precos">Preços e Cardápio</a></li>
+          <li><a href="#regras">Regras</a></li>
+          <li><a href="#contato">Localização</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="#" data-whatsapp target="_blank" rel="noopener" id="link-footer-wa">📱 WhatsApp</a></li>
+          <li><a href="#" data-instagram target="_blank" rel="noopener" id="link-footer-ig">📸 Instagram</a></li>
+          <li><a href="#" data-facebook target="_blank" rel="noopener" id="link-footer-fb">👍 Facebook</a></li>
+          <li><a href="#" data-mapa-link target="_blank" rel="noopener" id="link-footer-mapa">📍 Como chegar</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="footer-year"></span> <span data-nome>Pesqueiro Água Viva</span>. Todos os direitos reservados.</span>
+      <span>Preços sujeitos a alteração sem aviso prévio.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BOTÃO VOLTAR AO TOPO
+     ============================================================ -->
+<button id="back-to-top" aria-label="Voltar ao topo da página" title="Voltar ao topo">↑</button>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="script.js"></script>
+<script>
+  // Ano dinâmico no rodapé
+  document.getElementById("footer-year").textContent = new Date().getFullYear();
+  // Animação inicial do hero
+  window.addEventListener("load", () => {
+    document.getElementById("hero").classList.add("loaded");
+  });
+  // Ícone WhatsApp na navbar
+  const navIcon = document.getElementById("nav-wa-icon");
+  if (navIcon && typeof ICONS !== "undefined") navIcon.innerHTML = ICONS.whatsapp;
+</script>
+
+</body>
+</html>
